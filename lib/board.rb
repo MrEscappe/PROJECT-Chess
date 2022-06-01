@@ -1,11 +1,13 @@
 # frozen_string_literal: true
 
 require_relative 'translate_input'
+require_relative 'title'
 
 class Board
   attr_reader :board, :piece, :input
 
   def initialize
+    title
     @grid = Array.new(8) { Array.new(8) { '    ' } }
     @input = TranslateInput.new
     render_board(@grid)
