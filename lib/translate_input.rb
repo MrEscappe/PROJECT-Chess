@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class TranslateInput
+module TranslateInput
   attr_reader :row, :column
 
   def initialize

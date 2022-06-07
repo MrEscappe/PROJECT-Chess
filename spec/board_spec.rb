@@ -1,2 +1,3 @@
-require_relative './lib/board'
+# frozen_string_literal: true
 
+require_relative './lib/board'
