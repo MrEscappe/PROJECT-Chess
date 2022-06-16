@@ -19,20 +19,20 @@ class Knight < Piece
   end
 
   def available_moves
-    loc = []
+    move = []
 
-    moves.each do |e, v|
+    moves.each do |move_vector|
       current_r, current_c = location
-      current_r += e
-      current_c += v
 
+      current_r += move_vector[0]
+      current_c += move_vector[1]
       position = [current_r, current_c]
-      next unless board.in_bounds?(position)
 
-      loc << position if board.empty?(position) || enemy?(position)
+      move << position if board.in_bounds?(position) && !ally?(position)
+
+      move << position if enemy?(position)
     end
-
-    loc
+    move
   end
 
   def piece_color

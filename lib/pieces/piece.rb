@@ -13,26 +13,22 @@ class Piece
   end
 
   def available_moves
-    loc = []
-
-    moves.each do |e, v|
-      current_r, current_c = location
+    # go through all possible moves and return an array of available moves, if the move is valid
+    move = []
+    moves.each do |move_vector|
+      current_r = location[0]
+      current_c = location[1]
 
       loop do
-        current_r += e
-        current_c += v
-        position = [current_r, current_c]
-        break unless board.in_bounds?(position)
-        break unless ally?(position)
+        current_r += move_vector[0]
+        current_c += move_vector[1]
+        break if !board.in_bounds?([current_r, current_c]) || board[[current_r, current_c]].color == color
+        break if ally?([current_r, current_c])
 
-        loc << position if board.empty?(position)
-        if enemy?(position)
-          loc << position
-          break
-        end
+        move << [current_r, current_c] if enemy?([current_r, current_c])
       end
     end
-    loc
+    move
   end
 
   def enemy?(location)
@@ -51,5 +47,3 @@ class Piece
     location[1]
   end
 end
-
-# test enemy?

@@ -44,7 +44,7 @@ class Board
   end
 
   def initialize
-    @grid = Array.new(8) { Array.new(8, EmptyPice.instance) }
+    @grid = Array.new(8) { Array.new(8, EmptyPiece.instance) }
   end
 
   def []=(position, piece)
@@ -65,7 +65,7 @@ class Board
   def empty?(location)
     row = location[0]
     column = location[1]
-    grid[row][column] == EmptyPice.instance
+    grid[row][column] == EmptyPiece.instance
   end
 
   def render
@@ -74,9 +74,17 @@ class Board
   end
 
   def move(start_pos, end_pos)
+    if start_pos == end_pos
+      puts "You can't move to the same location!"
+      puts 'Please input a valid move.'
+      return false
+    end
     input_start = translate(start_pos)
     input_end = translate(end_pos)
     piece = self[input_start]
+
+    # check if the input comes from the king and if it is in check
+    return false if king_check?(input_end, piece) == false
 
     unless in_bounds?(input_end)
       render
@@ -85,19 +93,57 @@ class Board
     end
 
     if piece.available_moves.include?(input_end)
-      self[input_start] = EmptyPice.instance
+      self[input_start] = EmptyPiece.instance
       self[input_end] = piece
       piece.location = input_end
       render
     elsif !piece.available_moves.include?(input_end)
       render
       puts
-      puts "invalid for the #{piece.class},#{loop_available_moves(piece)}."
+      puts "invalid move for the #{piece.class},#{loop_available_moves(piece)}."
     end
   end
 
-  def checkmate?
+  def pieces
+    grid.flatten.reject { |e| e == EmptyPiece.instance }
+  end
+
+  def king_check?(input_end, piece)
+    return unless piece.is_a?(King) && king_self_check?(input_end, piece.color)
+
+    safe_moves = []
+    puts
+    puts "You can't put your king in check!"
+    # show the available moves for the king excluding the move that would put him in check
+    piece.available_moves.each do |move|
+      safe_moves << translate_back(move) if move != input_end
+    end
+    puts "The available moves for king are: #{safe_moves.uniq.join(', ')}"
     false
+  end
+
+  def king_self_check?(end_pos, color)
+    pieces.reject { |piece| piece.color == color }.each do |piece|
+      piece.available_moves.each do |move|
+        return true if move == end_pos
+      end
+    end
+    false
+  end
+
+  def in_check?(color)
+    check = false
+
+    pieces.reject { |piece| piece.color == color }.each do |piece|
+      piece.available_moves.each do |move|
+        check = true if self[move].is_a?(King)
+      end
+    end
+    check
+  end
+
+  def checkmate?(color)
+    return false unless in_check?(color)
   end
 
   def stalemate?

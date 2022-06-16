@@ -2,7 +2,7 @@
 
 require 'singleton'
 
-class EmptyPice
+class EmptyPiece
   include Singleton
   def piece_color
     ' '

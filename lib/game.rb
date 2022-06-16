@@ -28,7 +28,7 @@ class Game
     end
   end
 
-  def play 
+  def play
     until board.checkmate? || board.stalemate?
       puts
       puts "#{current_player}, it's your turn, you are #{current_player_color} pieces."

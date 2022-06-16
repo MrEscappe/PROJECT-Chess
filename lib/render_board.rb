@@ -29,7 +29,7 @@ module RenderBoard
     square = number.even? ? 0 : 1
     print "#{9 - number}  "
     @grid[number - 1].each do |e|
-      if e == EmptyPice.instance
+      if e == EmptyPiece.instance
         print square.even? ? '│    ' : "│#{'    '.bg_white}"
       else
         print square.even? ? "│ #{e.piece_color}  " : "│#{" #{e.piece_color}  ".bg_white}"
