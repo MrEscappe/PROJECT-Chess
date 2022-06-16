@@ -1,40 +1,49 @@
 # frozen_string_literal: true
 
+require_relative 'pieces'
 require_relative 'piece'
 
 class Pawn < Piece
-  attr_accessor :moves, :grid
-
   MOVES = [
     [0, 1],
     [0, 2]
   ].freeze
 
-  def initialize(grid, location, color)
-    super(grid, location, color)
-    @moves = MOVES
+  def moves
+    MOVES
+  end
+
+  def at_start_row?
+    current_r == (color == :white ? 6 : 1)
   end
 
   def forward_direction
-    color == :white ? 1 : -1
+    color == :white ? -1 : 1
   end
 
   def available_moves
     loc = []
 
     one_step = [current_r + forward_direction, current_c]
-    loc << one_step if grid.empty?(one_step)
+    loc << one_step if board.empty?(one_step) && !ally?(one_step)
 
     two_step = [current_r + (forward_direction * 2), current_c]
-    loc << two_step if grid.empty?(two_step) && grid.empty?(one_step)
+    loc << two_step if board.empty?(two_step) && board.empty?(one_step) && at_start_row?
 
-    # enemy diagonals
+    loc.select { |move| board.in_bounds?(move)}
+
+    loc
+  end
+
+  def en_passant
+    loc = []
+
     diagonal_right = [current_r + forward_direction, current_c + 1]
     diagonal_left = [current_r + forward_direction, current_c - 1]
     loc << diagonal_right if enemy?(diagonal_right)
     loc << diagonal_left if enemy?(diagonal_left)
-
-    moves.select { |move| grid.in_bounds?(move) }
+    loc.select { |move| board.in_bounds?(move) }
+    loc
   end
 
   def piece_color

@@ -1,12 +1,15 @@
 # frozen_string_literal: true
 
 class Piece
-  attr_accessor :color, :grid, :location
+  attr_reader :color, :board
+  attr_accessor :location
 
-  def initialize(grid, location, color)
-    @grid = grid
-    @location = location
+  include TranslateInput
+
+  def initialize(board, location, color)
+    @board = board
     @color = color
+    @location = location
   end
 
   def available_moves
@@ -19,9 +22,10 @@ class Piece
         current_r += e
         current_c += v
         position = [current_r, current_c]
-        break unless grid.in_bounds?(position)
+        break unless board.in_bounds?(position)
+        break unless ally?(position)
 
-        loc << position if grid.empty?(position)
+        loc << position if board.empty?(position)
         if enemy?(position)
           loc << position
           break
@@ -32,7 +36,11 @@ class Piece
   end
 
   def enemy?(location)
-    !grid[location] == '' && grid[location].color == color
+    board.in_bounds?(location) && board[location].color != color
+  end
+
+  def ally?(location)
+    board.in_bounds?(location) && board[location].color == color
   end
 
   def current_r
@@ -43,3 +51,5 @@ class Piece
     location[1]
   end
 end
+
+# test enemy?

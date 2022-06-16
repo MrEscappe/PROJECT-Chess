@@ -8,4 +8,8 @@ class String
   def bg_white
     "\e[100m#{self}\e[0m"
   end
+
+  def circle
+    "\e[33m\u2219\e[0m"
+  end
 end

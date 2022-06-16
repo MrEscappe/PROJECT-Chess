@@ -10,9 +10,8 @@ class Bishop < Piece
     [-1, -1]
   ].freeze
 
-  def initialize(grid, location, color)
-    super(grid, location, color)
-    @moves = MOVES
+  def moves
+    MOVES
   end
 
   def piece_color

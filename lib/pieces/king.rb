@@ -3,7 +3,7 @@
 require_relative 'piece'
 
 class King < Piece
-  attr_accessor :moves, :grid
+  
 
   MOVES = [
     [1, 1],
@@ -16,9 +16,8 @@ class King < Piece
     [-1, -1]
   ].freeze
 
-  def initialize(grid, location, color)
-    super(grid, location, color)
-    @moves = MOVES
+  def moves
+    MOVES
   end
 
   def available_moves
@@ -30,9 +29,9 @@ class King < Piece
       current_c += v
 
       position = [current_r, current_c]
-      next unless grid.in_bounds?(position)
+      next unless board.in_bounds?(position)
 
-      loc << position if grid.empty?(position) || enemy?(position)
+      loc << position if board.empty?(position) || enemy?(position)
     end
     loc
   end

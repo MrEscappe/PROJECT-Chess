@@ -3,7 +3,6 @@
 require_relative 'piece'
 
 class Queen < Piece
-  attr_accessor :moves, :grid
 
   MOVES = [
     [1, 1],
@@ -16,9 +15,8 @@ class Queen < Piece
     [-1, 0]
   ].freeze
 
-  def initialize(grid, location, color)
-    super(grid, location, color)
-    @moves = MOVES
+  def moves
+    MOVES
   end
 
   def piece_color
