@@ -8,7 +8,6 @@ game = Game.new
 
 # test bishop
 
-
 # test all pawns on the board
 # ('a'..'h').each do |column|
 #     grid.move("#{column}2", "#{column}5")

@@ -3,12 +3,19 @@
 require_relative 'piece'
 
 class Rook < Piece
+  attr_accessor :has_moved
+
   MOVES = [
     [0, 1],
     [0, -1],
     [1, 0],
     [-1, 0]
   ].freeze
+
+  def initialize(board, location, color)
+    super(board, location, color)
+    @has_moved = false
+  end
 
   def moves
     MOVES

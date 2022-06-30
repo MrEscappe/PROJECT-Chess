@@ -29,7 +29,7 @@ module RenderBoard
     square = number.even? ? 0 : 1
     print "#{9 - number}  "
     @grid[number - 1].each do |e|
-      if e == EmptyPiece.instance
+      if e == is_a?(EmptyPiece)
         print square.even? ? '│    ' : "│#{'    '.bg_white}"
       else
         print square.even? ? "│ #{e.piece_color}  " : "│#{" #{e.piece_color}  ".bg_white}"
@@ -40,8 +40,6 @@ module RenderBoard
   end
 
   # show history of moves at side of board
-  
-  def show_history
-    
-  end
+
+  def show_history; end
 end

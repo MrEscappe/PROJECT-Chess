@@ -26,7 +26,7 @@ module TranslateInput
 
   # convert y to the corret row number for the board
   def convert_y(y)
-    y = 7 - y
+    7 - y
   end
 
   def translate_back(input)

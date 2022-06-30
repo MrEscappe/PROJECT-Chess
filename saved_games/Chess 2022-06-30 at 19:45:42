@@ -1,0 +1,142 @@
+--- &10 !ruby/object:Game
+board: &6 !ruby/object:Board
+  grid:
+  - - &1 !ruby/object:EmptyPiece {}
+    - *1
+    - *1
+    - *1
+    - *1
+    - *1
+    - *1
+    - *1
+  - - &2 !ruby/object:EmptyPiece {}
+    - *2
+    - *2
+    - *2
+    - *2
+    - *2
+    - *2
+    - *2
+  - - &3 !ruby/object:EmptyPiece {}
+    - *3
+    - *3
+    - *3
+    - *3
+    - *3
+    - *3
+    - *3
+  - - &4 !ruby/object:EmptyPiece {}
+    - *4
+    - *4
+    - *4
+    - *4
+    - *4
+    - *4
+    - *4
+  - - &5 !ruby/object:EmptyPiece {}
+    - *5
+    - *5
+    - *5
+    - *5
+    - *5
+    - !ruby/object:Queen
+      board: *6
+      color: :white
+      location:
+      - 4
+      - 6
+    - *5
+  - - &7 !ruby/object:EmptyPiece {}
+    - *7
+    - *7
+    - *7
+    - *7
+    - *7
+    - !ruby/object:Bishop
+      board: *6
+      color: :white
+      location:
+      - 5
+      - 6
+    - !ruby/object:Pawn
+      board: *6
+      color: :white
+      location:
+      - 5
+      - 7
+      moves_count: 0
+      en_passant_flag: false
+      one_step:
+      - 4
+      - 7
+      two_step:
+      - 3
+      - 7
+  - - &8 !ruby/object:EmptyPiece {}
+    - *8
+    - *8
+    - *8
+    - !ruby/object:Bishop
+      board: *6
+      color: :black
+      location:
+      - 6
+      - 4
+    - !ruby/object:Pawn
+      board: *6
+      color: :white
+      location:
+      - 6
+      - 5
+      moves_count: 0
+      en_passant_flag: false
+      one_step:
+      - 5
+      - 5
+      two_step:
+      - 4
+      - 5
+    - !ruby/object:Pawn
+      board: *6
+      color: :black
+      location:
+      - 6
+      - 6
+      moves_count: 0
+      en_passant_flag: false
+      one_step:
+      - 7
+      - 6
+      two_step:
+      - 8
+      - 6
+    - !ruby/object:King
+      board: *6
+      color: :white
+      location:
+      - 6
+      - 7
+      has_moved: false
+  - - &9 !ruby/object:EmptyPiece {}
+    - *9
+    - *9
+    - *9
+    - !ruby/object:Rook
+      board: *6
+      color: :black
+      location:
+      - 7
+      - 4
+      has_moved: false
+    - *9
+    - *9
+    - *9
+players: !ruby/object:Player
+  p1: A
+  color1: :white
+  p2: B
+  color2: :black
+current_player: A
+current_player_color: :white
+round_one: true
+game_instance: *10

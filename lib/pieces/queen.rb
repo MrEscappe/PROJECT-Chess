@@ -3,7 +3,6 @@
 require_relative 'piece'
 
 class Queen < Piece
-
   MOVES = [
     [-1, -1],
     [-1, 0],
@@ -13,7 +12,7 @@ class Queen < Piece
     [1, -1],
     [1, 0],
     [1, 1]
-        ].freeze
+  ].freeze
 
   def moves
     MOVES

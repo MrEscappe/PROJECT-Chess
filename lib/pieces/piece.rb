@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative 'pieces'
+
 class Piece
   attr_reader :color, :board
   attr_accessor :location
@@ -22,22 +24,43 @@ class Piece
       loop do
         current_r += move_vector[0]
         current_c += move_vector[1]
-        break if !board.in_bounds?([current_r, current_c]) || board[[current_r, current_c]].color == color
-        break if ally?([current_r, current_c])
+        position = [current_r, current_c]
 
-        move << [current_r, current_c] if enemy?([current_r, current_c])
+        break unless board.in_bounds?(position)
+        break if board[position].color == color
+
+        move << position if board.empty?(position)
+
+        if enemy?(position)
+          move << position
+          break
+        end
       end
     end
-    move
+    move.uniq
   end
 
   def enemy?(location)
-    board.in_bounds?(location) && board[location].color != color
+    if board.in_bounds?(location) && board[location].is_a?(Pawn) && board[location].en_passant_flag == true &&
+       board[location].color != color
+      return true
+    end
+
+    board.in_bounds?(location) && board[location].color != color && !board.empty?(location)
   end
 
-  def ally?(location)
-    board.in_bounds?(location) && board[location].color == color
-  end
+  # def ally?(location)
+  #   board.pieces.each do |piece|
+  #     if piece.is_a?(King) && piece.color != color
+  #       piece.available_moves.each do |move|
+  #         false if move == location
+  #       end
+  #     end
+  #   end
+  #   board.in_bounds?(location) && board[location].color == color
+  # end
+
+  # check enemy color
 
   def current_r
     location[0]

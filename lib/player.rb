@@ -17,7 +17,7 @@ class Player
     puts "Hello #{@p2}!"
     puts
     @color2 = get_color
-    sleep 3
+    # sleep 3
   end
 
   def get_name

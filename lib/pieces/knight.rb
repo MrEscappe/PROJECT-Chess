@@ -28,11 +28,11 @@ class Knight < Piece
       current_c += move_vector[1]
       position = [current_r, current_c]
 
-      move << position if board.in_bounds?(position) && !ally?(position)
+      move << position if board.in_bounds?(position) && board.empty?(position)
 
       move << position if enemy?(position)
     end
-    move
+    p move
   end
 
   def piece_color
