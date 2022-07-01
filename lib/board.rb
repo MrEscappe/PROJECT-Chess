@@ -15,39 +15,35 @@ class Board
     board = new
 
     # Place pawns
-    # 8.times do |e|
-    #   board[[6, e]] = Pawn.new(board, [6, e], :white)
-    #   board[[1, e]] = Pawn.new(board, [1, e], :black)
-    # end
-
-    board[[6, 5]] = Pawn.new(board, [6, 5], :white)
-    board[[5, 7]] = Pawn.new(board, [5, 7], :white)
-    board[[6, 6]] = Pawn.new(board, [6, 6], :black)
+    8.times do |e|
+      board[[6, e]] = Pawn.new(board, [6, e], :white)
+      board[[1, e]] = Pawn.new(board, [1, e], :black)
+    end
 
     # White pieces
-    # board[[7, 0]] = Rook.new(board, [7, 0], :white)
-    # board[[7, 1]] = Knight.new(board, [7, 1], :white)
-    board[[5, 6]] = Bishop.new(board, [5, 6], :white)
-    board[[4, 6]] = Queen.new(board, [4, 6], :white)
-    board[[6, 7]] = King.new(board, [6, 7], :white)
-    # board[[7, 5]] = Bishop.new(board, [7, 5], :white)
-    # board[[7, 6]] = Knight.new(board, [7, 6], :white)
-    # board[[7, 7]] = Rook.new(board, [7, 7], :white)
+    board[[7, 0]] = Rook.new(board, [7, 0], :white)
+    board[[7, 1]] = Knight.new(board, [7, 1], :white)
+    board[[7, 2]] = Bishop.new(board, [7, 2], :white)
+    board[[7, 3]] = Queen.new(board, [7, 3], :white)
+    board[[7, 4]] = King.new(board, [7, 4], :white)
+    board[[7, 5]] = Bishop.new(board, [7, 5], :white)
+    board[[7, 6]] = Knight.new(board, [7, 6], :white)
+    board[[7, 7]] = Rook.new(board, [7, 7], :white)
 
     # # Black pieces
-    # board[[0, 0]] = Rook.new(board, [0, 0], :black)
-    # board[[0, 1]] = Knight.new(board, [0, 1], :black)
-    board[[6, 4]] = Bishop.new(board, [6, 4], :black)
-    # board[[0, 3]] = Queen.new(board, [0, 3], :black)
-    # board[[0, 4]] = King.new(board, [0, 4], :black)
-    # board[[0, 5]] = Bishop.new(board, [0, 5], :black)
-    # board[[0, 6]] = Knight.new(board, [0, 6], :black)
-    board[[7, 4]] = Rook.new(board, [7, 4], :black)
+    board[[0, 0]] = Rook.new(board, [0, 0], :black)
+    board[[0, 1]] = Knight.new(board, [0, 1], :black)
+    board[[0, 2]] = Bishop.new(board, [0, 2], :black)
+    board[[0, 3]] = Queen.new(board, [0, 3], :black)
+    board[[0, 4]] = King.new(board, [0, 4], :black)
+    board[[0, 5]] = Bishop.new(board, [0, 5], :black)
+    board[[0, 6]] = Knight.new(board, [0, 6], :black)
+    board[[0, 7]] = Rook.new(board, [0, 7], :black)
     board
   end
 
   def initialize
-    @grid = Array.new(8) { Array.new(8, EmptyPiece.instance) }
+    @grid = Array.new(8) { Array.new(8, EmptyPiece.new) }
   end
 
   def []=(position, piece)
@@ -70,11 +66,11 @@ class Board
 
     row = location[0]
     column = location[1]
-    grid[row][column] == EmptyPiece.instance
+    grid[row][column].instance_of?(EmptyPiece)
   end
 
   def pieces
-    grid.flatten.reject { |e| e == EmptyPiece.instance }
+    grid.flatten.reject { |e| e.instance_of?(EmptyPiece) }
   end
 
   def clone
@@ -87,7 +83,7 @@ class Board
   end
 
   def render
-    # system 'clear'
+    system 'clear'
     render_board
   end
 
@@ -121,14 +117,14 @@ class Board
 
       if en_passant?(input_end, piece) == true
         en_passant_enemy_color(input_start, input_end)
-        self[input_start] = EmptyPiece.instance
+        self[input_start] = EmptyPiece.new
         self[input_end] = piece
         piece.location = input_end
         return true
       end
 
       if piece.is_a?(King)
-        self[input_start] = EmptyPiece.instance
+        self[input_start] = EmptyPiece.new
         move_rook_castle(input_start, input_end, piece)
         castle_flag?(piece)
         self[input_end] = piece
@@ -136,7 +132,7 @@ class Board
         return true
       end
 
-      self[input_start] = EmptyPiece.instance
+      self[input_start] = EmptyPiece.new
       castle_flag?(piece)
       self[input_end] = piece
       piece.location = input_end
@@ -170,7 +166,7 @@ class Board
 
     if grid[input_start[0]][input_start[1] + 3].is_a?(Rook) && [[7, 6], [0, 6]].include?(input_end)
       rook = self[[input_start[0], input_start[1] + 3]]
-      self[[input_start[0], input_start[1] + 3]] = EmptyPiece.instance
+      self[[input_start[0], input_start[1] + 3]] = EmptyPiece.new
       self[[input_start[0], input_start[1] + 1]] = rook
       rook.location = [input_start[0], input_start[1] + 1]
       rook.has_moved = true
@@ -180,7 +176,7 @@ class Board
 
     if grid[input_start[0]][input_start[1] - 4].is_a?(Rook) && [[7, 2], [0, 2]].include?(input_end)
       rook = self[[input_start[0], input_start[1] - 4]]
-      self[[input_start[0], input_start[1] - 4]] = EmptyPiece.instance
+      self[[input_start[0], input_start[1] - 4]] = EmptyPiece.new
       self[[input_start[0], input_start[1] - 1]] = rook
       rook.location = [input_start[0], input_start[1] - 1]
       rook.has_moved = true
@@ -216,9 +212,9 @@ class Board
     end_r, end_c = input_end
     start_r, start_c = input_start
 
-    grid[end_r - 1][end_c] = EmptyPiece.instance if grid[start_r][start_c + 1].color == :white
+    grid[end_r - 1][end_c] = EmptyPiece.new if grid[start_r][start_c + 1].color == :white
 
-    grid[end_r + 1][end_c] = EmptyPiece.instance if grid[start_r][start_c - 1].color == :black
+    grid[end_r + 1][end_c] = EmptyPiece.new if grid[start_r][start_c - 1].color == :black
   end
 
   def king_check?(input_end, piece)
@@ -279,10 +275,3 @@ class Board
   end
 end
 
-# b = Board.start_board
-# b.render
-# p b.checkmate?(:white)
-# b.move?('g2', 'g1')
-# # p b.in_check?(:black)
-# # b.move?('e8', 'd7')
-# # b.render

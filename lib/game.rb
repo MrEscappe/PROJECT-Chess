@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require_relative 'board'
-# require_relative 'title'
 require_relative 'translate_input'
 require_relative 'player'
 require_relative 'save'
@@ -12,13 +11,10 @@ class Game
   include SaveLoad
   include TranslateInput
   def initialize
-    # title = Title.new
     @board = Board.start_board
-    # get_input
     @players = Player.new
     @current_player = @players.p1
     @current_player_color = @players.color1
-    # @computer = Computer.new
     @round_one = true
     @game_instance = self
   end
@@ -34,12 +30,13 @@ class Game
   end
 
   def play
-    if @current_player_color == :black && @round_one == true
+    if @round_one == true && @current_player_color == :black
       swap_players!
       @round_one = false
     end
 
     board.render
+    @round_one = false
 
     until is_checkmate?(current_player_color) == true || is_stalemate?(current_player_color) == true
       puts
@@ -136,6 +133,7 @@ class Game
 
   def player_move
     puts 'Please enter a move in the format of "a2 to a4" or "a7 to a5", or enter "resign" to resign the game.'
+    puts 'If you want to save just type "save".'
     puts
     print '> '
     input = get_input
@@ -183,8 +181,6 @@ class Game
       game_over
     when 'save'
       save
-    when 'load'
-      load_game
     end
 
     input.split(' to ')
@@ -199,7 +195,3 @@ class Game
     exit
   end
 end
-
-# game = Game.new
-
-# game.save

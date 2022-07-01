@@ -32,7 +32,7 @@ class Knight < Piece
 
       move << position if enemy?(position)
     end
-    p move
+    move.uniq
   end
 
   def piece_color
