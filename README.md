@@ -5,7 +5,7 @@ This is the final project in Ruby path from [The Odin Project](https://www.theod
 ## Demo
 ![demo gaming](https://cdn.discordapp.com/attachments/941796190964572213/992568153706090546/chess_demo.gif)
 *a demo gaming.*
-You can play it on rptl.
+You can play it on [replit](https://replit.com/@SergioSilva1/PROJECT-Chess#main.rb).
 
 ## Project requirement
 
