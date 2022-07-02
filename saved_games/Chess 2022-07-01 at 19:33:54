@@ -1,0 +1,374 @@
+--- &6 !ruby/object:Game
+board: &1 !ruby/object:Board
+  grid:
+  - - !ruby/object:Rook
+      board: *1
+      color: :black
+      location:
+      - 0
+      - 0
+      has_moved: false
+    - !ruby/object:Knight
+      board: *1
+      color: :black
+      location:
+      - 0
+      - 1
+    - !ruby/object:Bishop
+      board: *1
+      color: :black
+      location:
+      - 0
+      - 2
+    - !ruby/object:Queen
+      board: *1
+      color: :black
+      location:
+      - 0
+      - 3
+    - !ruby/object:King
+      board: *1
+      color: :black
+      location:
+      - 0
+      - 4
+      has_moved: false
+    - !ruby/object:Bishop
+      board: *1
+      color: :black
+      location:
+      - 0
+      - 5
+    - !ruby/object:EmptyPiece {}
+    - !ruby/object:Rook
+      board: *1
+      color: :black
+      location:
+      - 0
+      - 7
+      has_moved: false
+  - - !ruby/object:Pawn
+      board: *1
+      color: :black
+      location:
+      - 1
+      - 0
+      moves_count: 0
+      en_passant_flag: false
+      one_step:
+      - 2
+      - 0
+      two_step:
+      - 3
+      - 0
+    - !ruby/object:Pawn
+      board: *1
+      color: :black
+      location:
+      - 1
+      - 1
+      moves_count: 0
+      en_passant_flag: false
+      one_step:
+      - 2
+      - 1
+      two_step:
+      - 3
+      - 1
+    - !ruby/object:Pawn
+      board: *1
+      color: :black
+      location:
+      - 1
+      - 2
+      moves_count: 0
+      en_passant_flag: false
+      one_step:
+      - 2
+      - 2
+      two_step:
+      - 3
+      - 2
+    - !ruby/object:Pawn
+      board: *1
+      color: :black
+      location:
+      - 1
+      - 3
+      moves_count: 0
+      en_passant_flag: false
+      one_step:
+      - 2
+      - 3
+      two_step:
+      - 3
+      - 3
+    - !ruby/object:Pawn
+      board: *1
+      color: :black
+      location:
+      - 1
+      - 4
+      moves_count: 0
+      en_passant_flag: false
+      one_step:
+      - 2
+      - 4
+      two_step:
+      - 3
+      - 4
+    - !ruby/object:Pawn
+      board: *1
+      color: :black
+      location:
+      - 1
+      - 5
+      moves_count: 0
+      en_passant_flag: false
+      one_step:
+      - 2
+      - 5
+      two_step:
+      - 3
+      - 5
+    - !ruby/object:Pawn
+      board: *1
+      color: :black
+      location:
+      - 1
+      - 6
+      moves_count: 0
+      en_passant_flag: false
+      one_step:
+      - 2
+      - 6
+      two_step:
+      - 3
+      - 6
+    - !ruby/object:Pawn
+      board: *1
+      color: :black
+      location:
+      - 1
+      - 7
+      moves_count: 0
+      en_passant_flag: false
+      one_step:
+      - 2
+      - 7
+      two_step:
+      - 3
+      - 7
+  - - &2 !ruby/object:EmptyPiece {}
+    - *2
+    - *2
+    - *2
+    - *2
+    - !ruby/object:Knight
+      board: *1
+      color: :black
+      location:
+      - 2
+      - 5
+    - *2
+    - *2
+  - - &3 !ruby/object:EmptyPiece {}
+    - *3
+    - *3
+    - *3
+    - *3
+    - *3
+    - *3
+    - *3
+  - - &4 !ruby/object:EmptyPiece {}
+    - *4
+    - *4
+    - *4
+    - !ruby/object:Pawn
+      board: *1
+      color: :white
+      location:
+      - 4
+      - 4
+      moves_count: 1
+      en_passant_flag: true
+      one_step:
+      - 3
+      - 4
+      two_step:
+      - 2
+      - 4
+    - *4
+    - *4
+    - *4
+  - - &5 !ruby/object:EmptyPiece {}
+    - *5
+    - *5
+    - *5
+    - *5
+    - *5
+    - *5
+    - *5
+  - - !ruby/object:Pawn
+      board: *1
+      color: :white
+      location:
+      - 6
+      - 0
+      moves_count: 0
+      en_passant_flag: false
+      one_step:
+      - 5
+      - 0
+      two_step:
+      - 4
+      - 0
+    - !ruby/object:Pawn
+      board: *1
+      color: :white
+      location:
+      - 6
+      - 1
+      moves_count: 0
+      en_passant_flag: false
+      one_step:
+      - 5
+      - 1
+      two_step:
+      - 4
+      - 1
+    - !ruby/object:Pawn
+      board: *1
+      color: :white
+      location:
+      - 6
+      - 2
+      moves_count: 0
+      en_passant_flag: false
+      one_step:
+      - 5
+      - 2
+      two_step:
+      - 4
+      - 2
+    - !ruby/object:Pawn
+      board: *1
+      color: :white
+      location:
+      - 6
+      - 3
+      moves_count: 0
+      en_passant_flag: false
+      one_step:
+      - 5
+      - 3
+      two_step:
+      - 4
+      - 3
+    - !ruby/object:EmptyPiece {}
+    - !ruby/object:Pawn
+      board: *1
+      color: :white
+      location:
+      - 6
+      - 5
+      moves_count: 0
+      en_passant_flag: false
+      one_step:
+      - 5
+      - 5
+      two_step:
+      - 4
+      - 5
+    - !ruby/object:Pawn
+      board: *1
+      color: :white
+      location:
+      - 6
+      - 6
+      moves_count: 0
+      en_passant_flag: false
+      one_step:
+      - 5
+      - 6
+      two_step:
+      - 4
+      - 6
+    - !ruby/object:Pawn
+      board: *1
+      color: :white
+      location:
+      - 6
+      - 7
+      moves_count: 0
+      en_passant_flag: false
+      one_step:
+      - 5
+      - 7
+      two_step:
+      - 4
+      - 7
+  - - !ruby/object:Rook
+      board: *1
+      color: :white
+      location:
+      - 7
+      - 0
+      has_moved: false
+    - !ruby/object:Knight
+      board: *1
+      color: :white
+      location:
+      - 7
+      - 1
+    - !ruby/object:Bishop
+      board: *1
+      color: :white
+      location:
+      - 7
+      - 2
+    - !ruby/object:Queen
+      board: *1
+      color: :white
+      location:
+      - 7
+      - 3
+    - !ruby/object:King
+      board: *1
+      color: :white
+      location:
+      - 7
+      - 4
+      has_moved: false
+    - !ruby/object:Bishop
+      board: *1
+      color: :white
+      location:
+      - 7
+      - 5
+    - !ruby/object:Knight
+      board: *1
+      color: :white
+      location:
+      - 7
+      - 6
+    - !ruby/object:Rook
+      board: *1
+      color: :white
+      location:
+      - 7
+      - 7
+      has_moved: false
+  column: 5
+  row: 5
+players: !ruby/object:Player
+  p1: Jose
+  color1: :white
+  p2: Aron
+  color2: :black
+current_player: Jose
+current_player_color: :white
+round_one: false
+game_instance: *6
+column: 5
+row: 5
