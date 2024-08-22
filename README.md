@@ -3,7 +3,7 @@ The goal of this project is making a complete [Chess](https://www.chess.com/lear
 
 This is the final project in Ruby path from [The Odin Project](https://www.theodinproject.com/lessons/ruby-ruby-final-project)
 ## Demo
-![demo gaming](https://cdn.discordapp.com/attachments/941796190964572213/992568153706090546/chess_demo.gif)
+![demo gaming](https://cdn.discordapp.com/attachments/941796190964572213/992568153706090546/chess_demo.gif?ex=66c86e60&is=66c71ce0&hm=4104048d79cbdc56833e95b14f0a3caf14d21d08afb4d1d33409873eba93204b&)
 *a demo gaming.*
 You can play it on [replit](https://replit.com/@SergioSilva1/PROJECT-Chess#main.rb).
 
